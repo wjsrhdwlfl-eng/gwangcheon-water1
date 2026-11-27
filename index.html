@@ -168,6 +168,8 @@ table.rank tbody tr:first-child td:first-child { color: var(--gold-d); }
 @keyframes feedIn { 0% { opacity: 0; transform: translateX(30px); } 6% { opacity: 1; transform: none; } 80% { opacity: 1; } 100% { opacity: 0; } }
 .tank { position: absolute; left: 50%; bottom: max(14px, env(safe-area-inset-bottom)); transform: translateX(-50%); display: flex; gap: 10px; align-items: center; background: var(--hudbg); color: #fff; padding: 8px 12px 8px 14px; border-radius: 16px; pointer-events: auto; box-shadow: 0 4px 14px rgba(0, 0, 0, .3); }
 .tank .ico { font-size: 20px; line-height: 1; }
+.tank .hp { font-size: 18px; line-height: 1; letter-spacing: 1px; padding-right: 8px; border-right: 1px solid rgba(255,255,255,.25); white-space: nowrap; }
+.tank .hp.hit { animation: pulse .35s ease-out 2; }
 .tank .bar { position: relative; width: 190px; height: 18px; background: #173550; border-radius: 9px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0, 0, 0, .5); }
 .tank .bar i { display: block; height: 100%; background: linear-gradient(180deg, #9fe6ff 0%, #39b8ff 45%, #1f86e6 100%); transition: width .15s ease-out; border-radius: 9px; }
 .tank .bar::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 calc(100% / 10 - 2px), rgba(8, 26, 44, .9) calc(100% / 10 - 2px) calc(100% / 10)); }
@@ -230,6 +232,17 @@ body.touch #fireBtn { display: block; }
 .quiz-opts button.right { border-color: var(--ok); background: #e3f5ec; box-shadow: 0 4px 0 #9fd9bd; animation: pulse .4s ease-out; } .quiz-opts button.right em { background: var(--ok); }
 .quiz-opts button.wrong { border-color: var(--red); background: #fdeaea; box-shadow: 0 4px 0 #f3b3b5; animation: shakeBtn .35s; } .quiz-opts button.wrong em { background: var(--red); }
 @keyframes shakeBtn { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.slots { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.slots button { width: 48px; height: 52px; border-radius: 12px; border: 3px dashed #9fc3da; background: #f2f9fd; font-family: var(--font-display); font-size: 28px; color: var(--ink); padding: 0; }
+.slots button.on { border-style: solid; border-color: var(--blue); background: #fff; box-shadow: 0 4px 0 #bcd9f5; }
+.slots.right button { border-color: var(--ok); background: #e3f5ec; box-shadow: 0 4px 0 #9fd9bd; }
+.slots.shake { animation: shakeBtn .35s; }
+.tiles { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.tiles button { min-width: 50px; height: 50px; border-radius: 12px; border: 0; background: var(--gold); color: #2a1d00; font-family: var(--font-display); font-size: 26px; box-shadow: 0 5px 0 var(--gold-d); padding: 0 8px; transition: transform .08s, box-shadow .08s; }
+.tiles button:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 1px 0 var(--gold-d); }
+.tiles button:disabled { opacity: .25; box-shadow: none; }
+.hintline { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; font-weight: 700; color: #7a5a00; background: #fff6d6; border-radius: 12px; padding: 6px 12px; font-size: 15px; }
+.hintbtn { border: 0; border-radius: 999px; background: var(--navy); color: #fff; font-weight: 700; font-size: 13px; padding: 4px 12px; }
 .fb { border-radius: 12px; padding: 10px 14px; animation: popIn .22s ease-out; }
 .fb.ok { background: #e3f5ec; color: #145c3b; }
 .fb.no { background: #fdeaea; color: #8a1f23; }
@@ -256,6 +269,7 @@ body.touch #fireBtn { display: block; }
 .hud { padding-top: 6px; } .board { margin-top: -6px; } .board .t { font-size: 24px; padding: 4px 12px; min-width: 76px; } .board .big { font-size: 22px; } .board .mid .sm { font-size: 11px; } #mini { width: 92px; height: 92px; } #fireBtn { width: 112px; height: 112px; bottom: 58px; font-size: 22px; } #bombBtn { width: 72px; height: 72px; right: calc(max(18px, env(safe-area-inset-right)) + 124px); bottom: 66px; } #toast { top: 60px; font-size: 15px; }
 .tank { bottom: 8px; padding: 5px 10px; font-size: 14px; white-space: nowrap; } .tank .bar { width: 120px; height: 15px; } #itemBar { bottom: 54px; }
 .overlay { padding: 8px; align-items: start; } .overlay .panel { width: min(780px, 100%); } .quiz .qhead { padding: 6px 14px; font-size: 14px; } .quiz .qbody { padding: 10px 14px 12px; gap: 8px; }
+.slots button { width: 40px; height: 42px; font-size: 23px; } .tiles button { min-width: 42px; height: 40px; font-size: 22px; } .hintline { padding: 3px 10px; font-size: 13.5px; }
 .quiz-q { font-size: 17px; } .quiz-opts { grid-template-columns: 1fr 1fr; gap: 8px; } .quiz-opts button { padding: 7px 10px; font-size: 15px; gap: 8px; } .quiz-opts button em { width: 26px; height: 26px; font-size: 15px; } .fb { padding: 6px 10px; font-size: 14px; }
 .result { padding-top: 12px; padding-bottom: 12px; gap: 8px; } .banner { margin-top: -12px; padding: 8px 12px; } .banner h2 { font-size: 28px; } .banner .pts { font-size: 26px; } table.rank th, table.rank td { padding: 3px 8px; font-size: 14px; }
 }
@@ -353,7 +367,7 @@ body.touch #fireBtn { display: block; }
 <div class="panel soft">
 <h3>경기 방법</h3>
 <div class="howto">
-<div><i>🔫</i><span>상대 팀을 맞히면 <b>우리 팀 1점</b>. 맞으면 3초 쉬었다가 우리 진영에서 다시 나옵니다.</span></div>
+<div><i>🔫</i><span>상대 팀을 맞히면 <b>우리 팀 1점</b>. 몸통은 두 대, 머리는 한 대에 아웃! 아웃되면 문제를 풀어야 다시 나옵니다.</span></div>
 <div><i>💧</i><span>물탱크는 <b>10발</b>. 다 쓰면 교과서 문제가 나오고, 맞히면 가득 충전되어 새 위치에서 출발합니다.</span></div>
 <div><i>🛡️</i><span>문제를 푸는 동안에는 <b>보호막</b>이 생겨 맞지 않습니다. 틀리면 해설을 10초 읽어야 합니다.</span></div>
 <div><i>📱</i><span>휴대폰은 <b>가로</b>로! 왼쪽을 끌어 이동, 오른쪽을 끌어 조준, 파란 버튼으로 발사합니다.</span></div>
@@ -384,7 +398,7 @@ body.touch #fireBtn { display: block; }
 </div>
 <div id="centerMsg" hidden></div>
 <div id="toast" hidden></div>
-<div class="tank" id="tank"><span class="ico">💧</span><span class="bar"><i id="tankBar" style="width:100%"></i></span><span id="tankNum">10</span><button type="button" id="refillBtn">충전</button></div>
+<div class="tank" id="tank"><span class="hp" id="hp" aria-label="체력">❤️❤️</span><span class="ico">💧</span><span class="bar"><i id="tankBar" style="width:100%"></i></span><span id="tankNum">10</span><button type="button" id="refillBtn">충전</button></div>
 <div id="cross" hidden><i></i><i></i><i></i><i></i></div>
 <div id="pops"></div>
 <button type="button" id="fireBtn" aria-label="발사">발사</button>
@@ -614,7 +628,7 @@ $("copyLink").addEventListener("click", async () => { try { await navigator.clip
 async function setPhase(phase, round) {
 host.phase = phase; host.round = round; host.phaseAt = Date.now();
 try { await dbReq(`rooms/${roomKey(host.code)}/state`, "PUT", { phase, round, id: `${phase}-${round}-${Date.now().toString(36)}` }); } catch (e) {}
-if (phase === "end") { dbReq(`rooms/${roomKey(host.code)}/shots`, "DELETE").catch(() => {}); dbReq(`rooms/${roomKey(host.code)}/pos`, "DELETE").catch(() => {}); }
+if (phase === "end") { dbReq(`rooms/${roomKey(host.code)}/shots`, "DELETE").catch(() => {}); dbReq(`rooms/${roomKey(host.code)}/tags`, "DELETE").catch(() => {}); dbReq(`rooms/${roomKey(host.code)}/pos`, "DELETE").catch(() => {}); }
 renderHost();
 }
 function hostTick() {
@@ -715,7 +729,7 @@ const players = room.players || {}, prev = players[me.pid];
 let team = prev && prev.t;
 if (!team) { const nb = Object.values(players).filter(p => p.t === "b").length, nr = Object.values(players).filter(p => p.t === "r").length; team = nb < nr ? "b" : nr < nb ? "r" : (Math.random() < .5 ? "b" : "r"); }
 try { await dbReq(`rooms/${roomKey(code)}/players/${me.pid}`, "PUT", { n: name, t: team, j: Date.now() }); } catch (e) { return msg("참가 정보를 보내지 못했습니다. 다시 눌러 보세요."); }
-me.team = team; me.lastState = null; me.seenShots = null; me.seenHits = null;
+me.team = team; me.lastState = null; me.seenShots = null; me.seenHits = null; me.seenTags = null;
 subscribe(roomKey(code), onStudentUpdate, "stuConn");
 show("wait"); renderWait();
 }
@@ -732,7 +746,9 @@ if (!me.seenShots) me.seenShots = new Set(Object.keys(shots));
 if (!me.seenHits) me.seenHits = new Set(Object.keys(hits));
 for (const k in shots) { if (me.seenShots.has(k)) continue; me.seenShots.add(k); const s = shots[k]; if (s && s.p !== me.pid && G.running && s.r === G.ri) spawnRemoteShot(s); }
 for (const k in hits) { if (me.seenHits.has(k)) continue; me.seenHits.add(k); const h = hits[k]; if (!h || h.r !== G.ri || !G.running) continue; const sp = (mirror.players || {})[h.s], vp = (mirror.players || {})[h.v]; if (sp && vp) feedHit(sp.n, sp.t, vp.n, vp.t); const vr = G.remote[h.v]; if (sp && vr) { burst(vr.x, 36, vr.y, sp.t, 12, 1.2); ripple(vr.x, vr.y, sp.t, 60, 0.5); }
-if (h.s === me.pid) { G.myHits++; G.hitMark = 1; toast("명중!"); sfx("hit"); pop("+1"); } }
+if (h.s === me.pid) { G.myHits++; G.hitMark = 1; toast(h.hs ? "🎯 헤드샷! 한 방에 아웃" : "명중! 아웃"); sfx("hit"); pop(h.hs ? "헤드샷 +1" : "+1"); } }
+const tags = mirror.tags || {}; if (!me.seenTags) me.seenTags = new Set(Object.keys(tags));
+for (const k in tags) { if (me.seenTags.has(k)) continue; me.seenTags.add(k); const h = tags[k]; if (!h || h.r !== G.ri || !G.running) continue; const sp = (mirror.players || {})[h.s], vr = G.remote[h.v]; if (sp && vr) burst(vr.x, 36, vr.y, sp.t, 8, 1); if (h.s === me.pid) { G.hitMark = 1; sfx("tag"); pop("맞혔다!"); } }
 const st = mirror.state;
 if (!$("wait").hidden) renderWait();
 if (!st || st.id === me.lastState) return;
@@ -778,6 +794,7 @@ ui: () => tone(660, 880, 0.07, "triangle", 0.08),
 shoot: () => { noise(0.14, 3200, 900, 1.4, 0.2); tone(480 + Math.random() * 60, 210, 0.09, "triangle", 0.06); },
 empty: () => { tone(180, 120, 0.06, "square", 0.05); noise(0.05, 1800, 1200, 3, 0.05); },
 splash: v => noise(0.16, 1500, 500, 0.8, 0.09 * v, 0, "lowpass"),
+tag: () => { tone(660, 520, 0.09, "triangle", 0.11); noise(0.13, 2000, 700, 0.9, 0.13); },
 hit: () => { tone(880, 880, 0.07, "triangle", 0.14); tone(1320, 1320, 0.16, "triangle", 0.14, 0.07); noise(0.18, 2400, 700, 0.9, 0.1); },
 hurt: () => { noise(0.45, 1800, 260, 0.7, 0.3, 0, "lowpass"); tone(330, 90, 0.4, "sawtooth", 0.07); },
 tick: () => tone(520, 520, 0.1, "triangle", 0.12),
@@ -855,7 +872,7 @@ Object.assign(G, { running: true, mode, ri, R: ROUNDS[ri], x: sp.x, y: sp.y, a: 
 bullets: [], splats: [], remote: {}, oth: [], myHits: 0, quizOk: 0, quizOpen: false, qOrder: shuffle(QB[ri].map((_, i) => i)), qIdx: 0, msg: "", msgT: 0, lastSent: "", localScore: { b: 0, r: 0 } });
 G.endAt = performance.now() / 1000 + countdown + (mode === "practice" ? PRACTICE_SEC : ROUND_SEC);
 G.bots = mode === "practice" ? makeBots() : [];
-$("ov").hidden = true; $("hudRound").textContent = G.R.name; $("feed").innerHTML = ""; G.asT = 0; clearInterval(me.poll); $("wet").innerHTML = ""; hudC.b = hudC.r = -1; T.deadK = 0; T.shake = 0;
+$("ov").hidden = true; $("hudRound").textContent = G.R.name; $("feed").innerHTML = ""; G.asT = 0; G.hp = HP_MAX; updHp(); clearInterval(me.poll); $("wet").innerHTML = ""; hudC.b = hudC.r = -1; T.deadK = 0; T.shake = 0;
 input.fire = false; resetSticks(); updTank(); initItems(ri); show("game");
 if (COARSE && cv.clientWidth < cv.clientHeight) toast("휴대폰을 가로로 돌리면 더 넓게 보여요");
 }
@@ -876,6 +893,8 @@ const ny = Math.max(PR, Math.min(WH - PR, e.y + dy)); if (!blocked(e.x, ny, PR))
 function fireFrom(x, y, a, team, owner, vz) { G.bullets.push({ x: x + Math.cos(a) * (PR + 4), y: y + Math.sin(a) * (PR + 4), vx: Math.cos(a) * BV, vy: Math.sin(a) * BV, vz: vz || 0, life: BLIFE, team, owner }); }
 /* 물줄기 높이: 총구 높이에서 출발해 위아래 조준만큼 오르내리고 살짝 떨어진다. 캐릭터 몸(0~72) 높이를 지날 때만 맞는다. */
 const SHOT_H0 = 40, BODY_H = 72;
+/* 체력 2칸: 몸통(높이 47 아래)에 맞으면 1칸, 머리(47~72, 폭이 좁다)에 맞으면 한 번에 아웃 */
+const HP_MAX = 2, HEAD_H = 47, HEAD_R = 16;
 function shotH(b) { const t = BLIFE - b.life; return SHOT_H0 + (b.vz || 0) * t - GRAV * t * t; }
 function spawnRemoteShot(s) { const pl = (mirror.players || {})[s.p]; if (!pl) return; if (s.b) { G.flying.push({ sx: s.sx, sy: s.sy, x: s.x, y: s.y, t: 0, team: pl.t, owner: s.p, name: pl.n }); return; } G.bullets.push({ x: s.x, y: s.y, vx: s.dx * BV, vy: s.dy * BV, vz: s.z || 0, life: BLIFE, team: pl.t, owner: s.p }); }
 function splat(x, y, team) { G.splats.push({ x, y, team, r: 14 + Math.random() * 12 }); if (G.splats.length > 150) G.splats.shift(); }
@@ -886,7 +905,7 @@ for (const o of G.oth) { if (o.t === me.team || !o.alive || o.quiz) continue; co
 let da = Math.abs(Math.atan2(dy, dx) - G.a); if (da > Math.PI) da = 2 * Math.PI - da; if (da < bd) { bd = da; best = Math.atan2(dy, dx); bdist = Math.hypot(dx, dy); } }
 if (best !== null) { let d = best - G.a; while (d > Math.PI) d -= 2 * Math.PI; while (d < -Math.PI) d += 2 * Math.PI; G.asA = d * 0.6; out = { a: G.a + G.asA, p: G.p || 0 };
 // 위아래도 상대 몸통(높이 35) 쪽으로 살짝 맞춰 준다
-const t = Math.max(0.05, bdist / BV), need = Math.atan(((35 - SHOT_H0) + GRAV * t * t) / t / BV); G.asP = (need - (G.p || 0)) * 0.5; out.p = (G.p || 0) + G.asP; G.asT = 0.16; }
+const t = Math.max(0.05, bdist / BV), hc = SHOT_H0 + Math.tan(G.p || 0) * BV * t - GRAV * t * t, need = Math.atan((((hc > 45 ? 57 : 35) - SHOT_H0) + GRAV * t * t) / t / BV); G.asP = (need - (G.p || 0)) * 0.5; out.p = (G.p || 0) + G.asP; G.asT = 0.16; }
 return out;
 }
 function myShoot() {
@@ -898,11 +917,19 @@ fireFrom(G.x, G.y, fa, me.team, me.pid || "me", Math.round(Math.tan(fp) * BV));
 if (G.mode === "multi") { const b = G.bullets[G.bullets.length - 1]; dbReq(`rooms/${roomKey(me.code)}/shots`, "POST", { p: me.pid, x: Math.round(b.x), y: Math.round(b.y), dx: +Math.cos(fa).toFixed(3), dy: +Math.sin(fa).toFixed(3), z: b.vz, r: G.ri }).catch(() => {}); }
 if (G.tank === 0) setTimeout(() => { if (G.running && G.tank === 0 && !G.quizOpen) openQuiz(); }, 250);
 }
-function iGotHit(shooter) {
-G.alive = false; G.respawnAt = G.now + RESPAWN; splat(G.x, G.y, shooter.team); sfx("hurt"); wetScreen(); if (T) { T.shake = 1; burst(G.x, 34, G.y, shooter.team, 14, 1.3); }
-toast(`${shooter.name || "상대"}의 물총에 맞았다!`); G.hurt = 1;
+function iGotHit(shooter, head, dmg) {
+G.hp = Math.max(0, (G.hp === undefined ? HP_MAX : G.hp) - (head ? HP_MAX : (dmg || 1))); updHp();
+if (G.hp > 0) { // 몸통에 한 대: 아직 아웃은 아니다
+sfx("tag"); G.hurt = 0.6; if (T) { T.shake = 0.5; burst(G.x, 34, G.y, shooter.team, 8, 1); }
+toast(`💦 ${shooter.name || "상대"}에게 한 대 맞았다! 한 대 더 맞으면 아웃`);
+try { navigator.vibrate && navigator.vibrate(50); } catch (e) {}
+if (G.mode === "multi") dbReq(`rooms/${roomKey(me.code)}/tags`, "POST", { s: shooter.id, v: me.pid, r: G.ri }).catch(() => {});
+return;
+}
+G.alive = false; G.respawnAt = Infinity; setTimeout(() => { if (G.running && !G.alive) openQuiz(); }, 1300); splat(G.x, G.y, shooter.team); sfx("hurt"); wetScreen(); if (T) { T.shake = 1; burst(G.x, 34, G.y, shooter.team, 14, 1.3); }
+toast(`${head ? "🎯 헤드샷! " : ""}${shooter.name || "상대"}의 물총에 맞았다!`); G.hurt = 1;
 try { navigator.vibrate && navigator.vibrate(120); } catch (e) {}
-if (G.mode === "multi") dbReq(`rooms/${roomKey(me.code)}/hits`, "POST", { s: shooter.id, v: me.pid, r: G.ri }).catch(() => {});
+if (G.mode === "multi") dbReq(`rooms/${roomKey(me.code)}/hits`, "POST", { s: shooter.id, v: me.pid, r: G.ri, hs: head ? 1 : 0 }).catch(() => {});
 else { G.localScore[shooter.team]++; feedHit(shooter.name, shooter.team, "나", me.team); }
 }
 function update(dt) {
@@ -943,21 +970,26 @@ b.life -= dt; b.x += b.vx * dt; b.y += b.vy * dt;
 const bh = shotH(b);
 if (b.life <= 0 || bh < 0 || (bh < 80 && blocked(b.x, b.y, 2))) { b.dead = true; splat(b.x, b.y, b.team); continue; }
 if (bh > BODY_H) continue; // 머리 위로 지나가는 물줄기
+const head = bh > HEAD_H, hr2 = head ? HEAD_R ** 2 : (PR + BR) ** 2;
+// 느린 기기에서 물줄기가 한 프레임에 몸을 건너뛰지 않도록, 지난 위치~지금 위치 선분과의 거리로 판정한다
+const px = b.x - b.vx * dt, py = b.y - b.vy * dt, d2 = (X, Y) => { const ex = b.x - px, ey = b.y - py, L = ex * ex + ey * ey, u = L ? Math.max(0, Math.min(1, ((X - px) * ex + (Y - py) * ey) / L)) : 0; return (px + ex * u - X) ** 2 + (py + ey * u - Y) ** 2; };
 // 내가 맞았는지는 내 기기가 판정한다. 문제를 푸는 동안에는 보호막이 있어 맞지 않는다.
-if (b.team !== me.team && G.alive && (b.x - G.x) ** 2 + (b.y - G.y) ** 2 < (PR + BR) ** 2) {
+if (b.team !== me.team && G.alive && d2(G.x, G.y) < hr2) {
 b.dead = true;
 if (G.quizOpen || G.inv > 0) { splat(b.x, b.y, b.team); continue; }
 const pl = (mirror.players || {})[b.owner], bot = G.bots.find(x => x.id === b.owner);
-iGotHit({ id: b.owner, team: b.team, name: pl ? pl.n : bot ? bot.n : "" }); continue;
+iGotHit({ id: b.owner, team: b.team, name: pl ? pl.n : bot ? bot.n : "" }, head); continue;
 }
 if (G.mode === "practice") {
-for (const e of G.bots) if (e.alive && e.inv <= 0 && e.t !== b.team && (b.x - e.x) ** 2 + (b.y - e.y) ** 2 < (PR + BR) ** 2) {
-b.dead = true; e.alive = false; e.respawnAt = G.now + RESPAWN; splat(e.x, e.y, b.team); G.localScore[b.team]++; burst(e.x, 36, e.y, b.team, 12, 1.2);
+for (const e of G.bots) if (e.alive && e.inv <= 0 && e.t !== b.team && d2(e.x, e.y) < hr2) {
+b.dead = true; e.hp = (e.hp === undefined ? HP_MAX : e.hp) - (head ? HP_MAX : 1);
+if (e.hp > 0) { burst(b.x, bh, b.y, b.team, 6, 0.9); if (b.owner === "me") { G.hitMark = 1; sfx("tag"); pop("맞혔다!"); } break; }
+e.alive = false; e.respawnAt = G.now + RESPAWN; splat(e.x, e.y, b.team); G.localScore[b.team]++; burst(e.x, 36, e.y, b.team, 12, 1.2);
 const sb = G.bots.find(x => x.id === b.owner); feedHit(b.owner === "me" ? "나" : sb ? sb.n : "", b.team, e.n, e.t);
-if (b.owner === "me") { G.myHits++; G.hitMark = 1; toast("명중!"); sfx("hit"); pop("+1"); } break;
+if (b.owner === "me") { G.myHits++; G.hitMark = 1; toast(head ? "🎯 헤드샷! 한 방에 아웃" : "명중! 아웃"); sfx("hit"); pop(head ? "헤드샷 +1" : "+1"); } break;
 }
 } else {
-for (const o of G.oth) if (o.alive && o.t !== b.team && (b.x - o.x) ** 2 + (b.y - o.y) ** 2 < (PR + BR) ** 2) { b.dead = true; splat(b.x, b.y, b.team); burst(b.x, 34, b.y, b.team, 6, 0.9); break; }
+for (const o of G.oth) if (o.alive && o.t !== b.team && d2(o.x, o.y) < hr2) { b.dead = true; splat(b.x, b.y, b.team); burst(b.x, 34, b.y, b.team, 6, 0.9); break; }
 }
 }
 G.bullets = G.bullets.filter(b => !b.dead);
@@ -970,7 +1002,7 @@ function updBots(dt) {
 const all = [{ id: "me", t: me.team, x: G.x, y: G.y, alive: G.alive && !G.quizOpen }].concat(G.bots.map(b => ({ id: b.id, t: b.t, x: b.x, y: b.y, alive: b.alive })));
 for (const b of G.bots) {
 if (b.inv > 0) b.inv -= dt;
-if (!b.alive) { if (G.now >= b.respawnAt) { const sp = spawnPoint(b.t); b.x = sp.x; b.y = sp.y; b.alive = true; b.inv = INVINC; } continue; }
+if (!b.alive) { if (G.now >= b.respawnAt) { const sp = spawnPoint(b.t); b.x = sp.x; b.y = sp.y; b.alive = true; b.inv = INVINC; b.hp = HP_MAX; } continue; }
 b.wt -= dt;
 if (b.wt <= 0 || Math.hypot(b.wx - b.x, b.wy - b.y) < 20) { b.wx = 300 + Math.random() * (WW - 600); b.wy = 100 + Math.random() * (WH - 200); b.wt = 4 + Math.random() * 4; }
 const ang = Math.atan2(b.wy - b.y, b.wx - b.x), ox = b.x, oy = b.y;
@@ -1379,7 +1411,7 @@ $("hudClock").textContent = mmss(left); $("hudClock").classList.toggle("hurry", 
 const ms = `🎯 명중 ${G.myHits} · 📘 문제 ${G.quizOk}`; if (ms !== hudC.me) { hudC.me = ms; $("hudMe").textContent = ms; }
 let cm = "";
 if (G.count > 0) cm = `<small>${esc(G.R.unit)}</small><b style="color:${TEAM[me.team].light}">나는 ${TEAM[me.team].name}</b>${G.count > 0.2 ? `<strong>${Math.ceil(G.count - 0.2)}</strong>` : '<strong class="go">출발!</strong>'}`;
-else if (!G.alive) { const rem = Math.max(0, G.respawnAt - G.now); cm = `<b>💦 물에 맞았다!</b><div class="ring" style="--p:${Math.round((1 - rem / RESPAWN) * 20) * 5}%"></div><small>${Math.max(1, Math.ceil(rem))}초 뒤 우리 진영에서 다시 출발</small>`; }
+else if (!G.alive && !G.quizOpen) cm = `<b>💦 아웃!</b><small>문제를 풀면 우리 진영에서 다시 출발합니다</small>`;
 if (cm !== hudC.cm) { hudC.cm = cm; $("centerMsg").innerHTML = cm; $("centerMsg").hidden = !cm; }
 const ts = G.msgT > 0 ? G.msg : "";
 if (ts !== hudC.toast) { hudC.toast = ts; const el = $("toast"); el.hidden = true; if (ts) { el.textContent = ts; void el.offsetWidth; el.hidden = false; } }
@@ -1581,7 +1613,9 @@ if (G.quizOpen || G.inv > 0) toast("🛡️ 보호막이 물풍선을 막았다!
 else { const pl = (mirror.players || {})[f.owner]; iGotHit({ id: f.owner, team: f.team, name: pl ? pl.n : f.name || "" }); }
 }
 if (G.mode === "practice") for (const e of G.bots) if (e.alive && e.inv <= 0 && e.t !== f.team && Math.hypot(e.x - f.x, e.y - f.y) < BOMB_R) {
-e.alive = false; e.respawnAt = G.now + RESPAWN; G.localScore[f.team]++; burst(e.x, 36, e.y, f.team, 10, 1.2);
+e.hp = (e.hp === undefined ? HP_MAX : e.hp) - 1; burst(e.x, 36, e.y, f.team, 10, 1.2);
+if (e.hp > 0) { if (f.owner === "me") { G.hitMark = 1; sfx("tag"); pop("맞혔다!"); } continue; }
+e.alive = false; e.respawnAt = G.now + RESPAWN; G.localScore[f.team]++;
 const sb = G.bots.find(x => x.id === f.owner); feedHit(f.owner === "me" ? "나" : sb ? sb.n : "", f.team, e.n, e.t);
 if (f.owner === "me") { G.myHits++; G.hitMark = 1; toast("🎈 물풍선 명중!"); sfx("hit"); pop("+1"); }
 }
@@ -1592,37 +1626,72 @@ window.addEventListener("keydown", e => { if (!$("game").hidden && (e.code === "
 cv.addEventListener("pointerdown", e => { if (e.pointerType === "mouse" && e.button === 2) { throwBomb(); } });
 
 /* ---------------- 충전 문제 ---------------- */
+function updHp() { const e = $("hp"), h = G.hp === undefined ? HP_MAX : G.hp, t = "❤️".repeat(h) + "🤍".repeat(HP_MAX - h); if (e.textContent !== t) { e.textContent = t; e.classList.remove("hit"); void e.offsetWidth; if (h < HP_MAX) e.classList.add("hit"); } }
 function updTank() {
 $("tankBar").style.width = (G.tank / TANK * 100) + "%"; $("tankNum").textContent = G.tank; $("refillBtn").textContent = G.tank === 0 ? "문제 풀고 충전!" : "충전"; $("refillBtn").disabled = G.tank > 3;
 $("tank").classList.toggle("low", G.tank > 0 && G.tank <= 3); $("tank").classList.toggle("empty", G.tank === 0);
 }
 function nextQ() { if (G.qIdx >= G.qOrder.length) { G.qOrder = shuffle(G.qOrder); G.qIdx = 0; } return QB[G.ri][G.qOrder[G.qIdx++]]; }
+/* 주관식(글자 맞추기): 정답이 2~7글자 한글 낱말인 쉬운 문제는 절반쯤 보기 없이 낸다. 가로 화면에서 키보드가 화면을 가리지 않도록 글자 조각을 눌러 완성한다. */
+const TILE_OFF = new Set(["2:14"]), TILE_NOT = /않은|아닌|옳은|알맞은|까닭|설명|자세|어디에서|때는|다음 중|해당하/;
+function tileAns(q) { const ri = G.ri, i = QB[ri].indexOf(q); if (TILE_OFF.has(ri + ":" + i) || TILE_NOT.test(q.q)) return null; const a = q.c[q.a].replace(/\(.*?\)/g, "").replace(/[\s·,]/g, ""); return /^[가-힣]{2,7}$/.test(a) ? a : null; }
+const choOf = t => [...t].map(c => "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ"[Math.floor((c.charCodeAt(0) - 0xAC00) / 588)]).join("");
 function openQuiz() {
 try { if (document.pointerLockElement) document.exitPointerLock(); } catch (e) {}
 if (G.quizOpen || !G.running) return;
 G.quizOpen = true; input.up = input.down = input.left = input.right = 0; resetSticks();
-const q = nextQ(), order = shuffle([0, 1, 2, 3]);
+const q = nextQ(), order = shuffle([0, 1, 2, 3]), ta = tileAns(q), tile = !!ta && Math.random() < 0.5, out = !G.alive;
 const ov = $("ov"); ov.hidden = false; sfx("shield");
-ov.innerHTML = `<div class="panel quiz"><div class="qhead"><span>💧 물탱크 충전 문제 · ${esc(G.R.unit)}</span><span class="shield">🛡️ 보호막 켜짐</span></div><div class="qbody"><p class="quiz-q">${esc(q.q)}</p>
+const head = `<div class="qhead"><span>${out ? "🚑 다시 출발 문제" : "💧 물탱크 충전 문제"} · ${esc(G.R.unit)}</span><span class="shield">${tile ? "✏️ 주관식" : "🛡️ 보호막 켜짐"}</span></div>`;
+const foot = `<p class="note">${out ? "문제를 맞히면 우리 진영에서 다시 출발해요." : "문제를 푸는 동안에는 보호막이 지켜 줘서 맞지 않아요."} ${q.p ? `교과서 ${q.p}쪽` : `교과서 ${esc(G.R.unitNo)}단원`}`;
+if (!tile) {
+ov.innerHTML = `<div class="panel quiz">${head}<div class="qbody"><p class="quiz-q">${esc(q.q)}</p>
 <div class="quiz-opts">${order.map((k, i) => `<button type="button" data-k="${k}"><em>${i + 1}</em><span>${esc(q.c[k])}</span></button>`).join("")}</div><div id="qfb"></div>
-<p class="note">문제를 푸는 동안에는 보호막이 지켜 줘서 맞지 않아요. ${q.p ? `교과서 ${q.p}쪽` : `교과서 ${esc(G.R.unitNo)}단원`}${COARSE ? "" : " · 숫자 키 1~4로도 고를 수 있어요."}</p></div></div>`;
+${foot}${COARSE ? "" : " · 숫자 키 1~4로도 고를 수 있어요."}</p></div></div>`;
 ov.querySelectorAll("[data-k]").forEach(b => b.addEventListener("click", () => answerQ(q, +b.dataset.k, b)));
+return;
+}
+// 글자 조각: 정답 글자 + 같은 단원 다른 정답에서 가져온 헷갈리는 글자
+const pool = [...new Set(QB[G.ri].map(x => x.c[x.a].replace(/\(.*?\)/g, "").replace(/[^가-힣]/g, "")).join(""))].filter(c => !ta.includes(c));
+const tiles = shuffle([...ta].concat(shuffle(pool).slice(0, Math.max(3, 9 - ta.length)))), picked = [];
+let tries = 0, hint = 0, done = false;
+ov.innerHTML = `<div class="panel quiz">${head}<div class="qbody"><p class="quiz-q">${esc(q.q)}</p>
+<div class="slots" id="qslots"></div><div class="tiles" id="qtiles">${tiles.map((c, i) => `<button type="button" data-i="${i}">${c}</button>`).join("")}</div><div id="qfb"></div>
+<p class="hintline"><span id="qhint"></span><button type="button" class="hintbtn" id="qhintBtn">힌트 더 보기</button></p>
+${foot}</p></div></div>`;
+const slots = $("qslots"), tb = [...ov.querySelectorAll("#qtiles button")];
+const drawHint = () => { $("qhint").textContent = "💡 힌트: " + [`${ta.length}글자 낱말`, `초성 ${choOf(ta)}`, `첫 글자는 “${ta[0]}”`].slice(0, hint + 1).join(" · "); $("qhintBtn").hidden = hint >= 2; };
+const draw = () => { slots.innerHTML = [...ta].map((_, i) => `<button type="button" data-s="${i}" class="${picked[i] !== undefined ? "on" : ""}">${picked[i] !== undefined ? tiles[picked[i]] : ""}</button>`).join(""); tb.forEach((b, i) => b.disabled = done || picked.includes(i)); };
+const check = () => {
+if (picked.length < ta.length) return;
+if (picked.map(i => tiles[i]).join("") === ta) { done = true; draw(); slots.classList.add("right"); quizRight(q); return; }
+tries++; sfx("no"); slots.classList.remove("shake"); void slots.offsetWidth; slots.classList.add("shake");
+if (tries >= 3) { done = true; draw(); quizWrong(q); return; }
+if (hint < 2) hint++; drawHint(); setTimeout(() => { if (!done) { picked.length = 0; draw(); } }, 450);
+};
+$("qtiles").addEventListener("click", e => { const b = e.target.closest("button"); if (!b || b.disabled || done || picked.length >= ta.length) return; picked.push(+b.dataset.i); sfx("ui"); draw(); check(); });
+slots.addEventListener("click", e => { const b = e.target.closest("button"); if (!b || done) return; const i = +b.dataset.s; if (i < picked.length) { picked.length = i; draw(); } });
+$("qhintBtn").addEventListener("click", () => { if (hint < 2) { hint++; drawHint(); } });
+draw(); drawHint();
 }
 window.addEventListener("keydown", e => { if (!G.quizOpen || $("ov").hidden) return; const n = "1234".indexOf(e.key); if (n < 0) return; const b = $("ov").querySelectorAll(".quiz-opts button")[n]; if (b && !b.disabled) b.click(); });
-function answerQ(q, k, btn) {
-const ov = $("ov"); ov.querySelectorAll("[data-k]").forEach(b => { b.disabled = true; if (+b.dataset.k === q.a) b.classList.add("right"); });
-if (k === q.a) {
+function quizRight(q) {
+const ov = $("ov"), out = !G.alive;
 G.quizOk++; G.tank = TANK; updTank(); sfx("ok");
 if (G.mode === "multi") dbReq(`rooms/${roomKey(me.code)}/quiz/${me.pid}/r${G.ri}`, "PUT", G.quizOk).catch(() => {});
-$("qfb").innerHTML = `<p class="fb ok"><b>⭕ 정답! 물탱크 가득 충전 · 새 위치에서 다시 출발</b><br>${esc(q.e)}</p>`;
-setTimeout(() => { if (!G.quizOpen) return; ov.hidden = true; relocate(); G.inv = INVINC; G.quizOpen = false; toast("💧 충전 완료! 새 위치에서 다시 출발"); sfx("respawn"); }, 1400);
-} else {
-btn.classList.add("wrong"); sfx("no");
+$("qfb").innerHTML = `<p class="fb ok"><b>⭕ 정답! ${out ? "우리 진영에서 다시 출발" : "물탱크·체력 가득 · 새 위치에서 다시 출발"}</b><br>${esc(q.e)}</p>`;
+setTimeout(() => { if (!G.quizOpen) return; ov.hidden = true; if (!G.alive) { const sp = spawnPoint(me.team); G.x = sp.x; G.y = sp.y; G.alive = true; } else relocate(); G.hp = HP_MAX; updHp(); G.inv = INVINC; G.quizOpen = false; toast(out ? "🚑 다시 출발!" : "💧 충전 완료! 새 위치에서 다시 출발"); sfx("respawn"); }, 1400);
+}
+function quizWrong(q) {
 $("qfb").innerHTML = `<p class="fb no"><b>❌ 아쉬워요. 정답은 “${esc(q.c[q.a])}”</b><br>${esc(q.e)}</p><div class="waitbar" style="margin-top:10px"><i style="animation-duration:${QUIZ_WAIT}s"></i></div><p class="note" style="margin-top:6px">해설을 읽으며 <b>${QUIZ_WAIT}초</b> 기다린 뒤 다른 문제를 풀 수 있어요. (찍지 말고 천천히 읽어 보세요!)</p><div class="actions" style="margin-top:8px"><button type="button" class="btn" id="qNext" disabled>${QUIZ_WAIT}초 뒤 다른 문제</button></div>`;
 const until = performance.now() + QUIZ_WAIT * 1000, nb = $("qNext");
 const tk = setInterval(() => { if (!G.quizOpen || !document.body.contains(nb)) { clearInterval(tk); return; } const left = Math.ceil((until - performance.now()) / 1000); if (left > 0) nb.textContent = `${left}초 뒤 다른 문제`; else { clearInterval(tk); nb.disabled = false; nb.textContent = "다른 문제 풀기"; } }, 200);
 nb.addEventListener("click", () => { if (nb.disabled) return; G.quizOpen = false; openQuiz(); });
+try { nb.scrollIntoView({ block: "nearest" }); } catch (e) {}
 }
+function answerQ(q, k, btn) {
+$("ov").querySelectorAll("[data-k]").forEach(b => { b.disabled = true; if (+b.dataset.k === q.a) b.classList.add("right"); });
+if (k === q.a) quizRight(q); else { btn.classList.add("wrong"); sfx("no"); quizWrong(q); }
 }
 
 /* ---------------- 결과 ---------------- */
